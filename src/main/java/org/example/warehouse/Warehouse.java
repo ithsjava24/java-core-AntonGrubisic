@@ -3,18 +3,23 @@ package org.example.warehouse;
 import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.List;
 
 public class Warehouse {
     private static Warehouse instance;
     private final String name;
-    private final List<ProductRecord> products = new ArrayList<>();
+    private List<ProductRecord> products = new ArrayList<>();
     private final Set<UUID> changedProductIds = new HashSet<>();
 
 
 
     private Warehouse() {
-        this.name = "Default Warehouse";
+        this.name = "MyStore";
     }
+    public void clear() {
+        products.clear();
+    }
+
 
     private Warehouse(String name) {
         this.name = name;
@@ -26,6 +31,7 @@ public class Warehouse {
         }
         return instance;
     }
+
 
     public static Warehouse getInstance(String name) {
         if (instance == null) {
@@ -66,7 +72,10 @@ public class Warehouse {
     }
 
     public Optional<ProductRecord> getProductById(UUID id) {
-        return products.stream().filter(product -> product.uuid().equals(id)).findFirst();
+        return products.stream()
+                .filter(product -> product.uuid()
+                .equals(id))
+                .findFirst();
     }
 
     public void updateProductPrice(UUID id, BigDecimal newPrice) {
@@ -93,4 +102,5 @@ public class Warehouse {
                 .filter(product -> product.category().equals(category))
                 .collect(Collectors.toList());
     }
+
 }
