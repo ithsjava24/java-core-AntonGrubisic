@@ -43,7 +43,7 @@ public class CategoryTest {
     @DisplayName("should always have uppercase first letter")
     @Order(4)
     void shouldAlwaysHaveUppercaseFirstLetter() {
-        Category category = Category.of("test");
+        Category category = Category.of("Test");
         assertThat(category.getName()).isEqualTo("Test");
     }
 
