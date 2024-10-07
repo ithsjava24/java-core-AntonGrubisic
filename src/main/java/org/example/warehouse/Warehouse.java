@@ -12,10 +12,10 @@ public class Warehouse {
     private final Set<UUID> changedProductIds = new HashSet<>();
 
 
-
     private Warehouse() {
         this.name = "MyStore";
     }
+
     public void clear() {
         products.clear();
     }
@@ -28,8 +28,14 @@ public class Warehouse {
     public static Warehouse getInstance() {
         if (instance == null) {
             instance = new Warehouse();
-        }
+
+        } else instance.clearProducts();
         return instance;
+    }
+
+    private void clearProducts() {
+        products.clear();
+        changedProductIds.clear();
     }
 
 
@@ -42,6 +48,10 @@ public class Warehouse {
 
     public boolean isEmpty() {
         return products.isEmpty();
+    }
+
+    public static void resetInstance() {
+        instance = null;
     }
 
     public List<ProductRecord> getProducts() {
@@ -74,7 +84,7 @@ public class Warehouse {
     public Optional<ProductRecord> getProductById(UUID id) {
         return products.stream()
                 .filter(product -> product.uuid()
-                .equals(id))
+                        .equals(id))
                 .findFirst();
     }
 
