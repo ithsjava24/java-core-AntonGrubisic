@@ -39,28 +39,27 @@ public class ProductRecord {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ProductRecord)) return false;
-        ProductRecord that = (ProductRecord) o;
+        if (!(o instanceof ProductRecord that)) return false;
         return Objects.equals(uuid, that.uuid) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(category, that.category) &&
                 Objects.equals(price, that.price);
     }
 
-    // Implementera hashCode() för att stödja användning i hash-baserade samlingar
+
     @Override
     public int hashCode() {
         return Objects.hash(uuid, name, category, price);
     }
 
-    // Implementera toString() för att underlätta felsökning
+
     @Override
     public String toString() {
         return "ProductRecord{" +
-                "uuid=" + uuid +
-                ", name='" + name + '\'' +
-                ", category=" + category +
-                ", price=" + price +
+                "UUID=" + uuid +
+                ", Name='" + name + '\'' +
+                ", Category=" + category +
+                ", Price=" + price +
                 '}';
     }
 }

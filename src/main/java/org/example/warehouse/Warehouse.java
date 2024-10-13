@@ -8,18 +8,13 @@ import java.util.List;
 public class Warehouse {
     private static Warehouse instance;
     private final String name;
-    private List<ProductRecord> products = new ArrayList<>();
+    private final List<ProductRecord> products = new ArrayList<>();
     private final Set<UUID> changedProductIds = new HashSet<>();
 
 
     private Warehouse() {
         this.name = "MyStore";
     }
-
-    public void clear() {
-        products.clear();
-    }
-
 
     private Warehouse(String name) {
         this.name = name;
@@ -38,7 +33,6 @@ public class Warehouse {
         changedProductIds.clear();
     }
 
-
     public static Warehouse getInstance(String name) {
         if (instance == null) {
             instance = new Warehouse(name);
@@ -46,13 +40,10 @@ public class Warehouse {
         return instance;
     }
 
-    public boolean isEmpty() {
+    public boolean ifWarehouseIsEmpty() {
         return products.isEmpty();
     }
 
-    public static void resetInstance() {
-        instance = null;
-    }
 
     public List<ProductRecord> getProducts() {
         return Collections.unmodifiableList(products);
@@ -84,7 +75,7 @@ public class Warehouse {
     public Optional<ProductRecord> getProductById(UUID id) {
         return products.stream()
                 .filter(product -> product.uuid()
-                        .equals(id))
+                .equals(id))
                 .findFirst();
     }
 
@@ -112,5 +103,4 @@ public class Warehouse {
                 .filter(product -> product.category().equals(category))
                 .collect(Collectors.toList());
     }
-
 }
