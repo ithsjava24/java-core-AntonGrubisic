@@ -76,7 +76,7 @@ class WarehouseTest {
         @Test
         @DisplayName("is empty")
         void isEmpty() {
-            assertThat(warehouse.isEmpty()).isTrue();
+            assertThat(warehouse.ifWarehouseIsEmpty()).isTrue();
         }
 
         @Test
@@ -147,7 +147,7 @@ class WarehouseTest {
         @Test
         @DisplayName("it is no longer empty")
         void itIsNoLongerEmpty() {
-            assertThat(warehouse.isEmpty()).isFalse();
+            assertThat(warehouse.ifWarehouseIsEmpty()).isFalse();
         }
 
         @Test
